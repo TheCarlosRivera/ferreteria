@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/mdb.min.css">
+  <title>Ideas D'Hogar</title>
+</head>
+<body>
+
+
+  <section class="menu-market bg-light">
+    <nav class="navbar navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand text-success"><strong>Ideas D'Hogar</strong> </a>
+        <form class="d-flex input-group w-50">
+          <input type="search" class="form-control rounded" id="buscardor-productos" placeholder="Search" aria-label="Search" aria-describedby="search-addon"/>
+          <span class="input-group-text border-0" id="search-addon">
+            <i class="fas fa-search"></i>
+          </span>
+        </form>
+      </div>
+    </nav>    
+  </section>
+
+
+  <section class="container-fluid mt-5">
+
+      <div class="content__categorias">
+        <h4 class="mb-3 ps-3">Filtros:</h4>
+        <div class="item-categoria p-3 pt-2 pb-2 active"><span>Todos</span></div>
+        <div class="item-categoria p-3 pt-2 pb-2"><span>Habitación</span></div>
+        <div class="item-categoria p-3 pt-2 pb-2"><span>Cocina</span></div>
+        <div class="item-categoria p-3 pt-2 pb-2"><span>Living</span></div>
+        <div class="item-categoria p-3 pt-2 pb-2"><span>Baño</span></div>
+        <div class="item-categoria p-3 pt-2 pb-2"><span>Oficina</span></div>
+      </div>
+
+      <div class="content__productos">
+        <div class="row g-4" id="imp_productos"></div>  
+      </div>
+
+  </section>
+
+
+<script src="js/app.js"></script>
+<script src="js/mdb.min.js"></script>
+
+
+</body>
+</html>

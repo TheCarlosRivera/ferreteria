@@ -1,0 +1,56 @@
+:root
+{
+  --green: #14A44D;
+  --white: #ffffff;
+}
+
+body
+{
+  background-color: #ECEFF1 !important;
+  min-width: 1100px;
+  overflow-x: hidden;
+}
+
+.menu-market
+{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+}
+
+.content__categorias
+{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  z-index: 3;
+  padding-top: 90px;
+  background: white;
+}
+
+.item-categoria
+{
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.item-categoria:hover,
+.item-categoria.active
+{
+  background: var(--green);
+  color: var(--white);;
+}
+
+.content__productos
+{
+  padding: 50px 30px 30px 280px;
+}
+
+.card-producto img
+{
+  height: 220px;
+}
