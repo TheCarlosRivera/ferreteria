@@ -9,20 +9,31 @@ const formatterPeso = new Intl.NumberFormat('es-CL', {
 
 
 let html = "";
-const cuerpo = (id, img, marca, nombre, precio) =>
+
+class cuerpo 
 {
-    html += `
-    <div class='items-productos position-relative col-12 col-sm-6 col-md-4 col-xl-3'>
-      <div class='card card-producto h-100 hover-shadow' onclick='mostrarDetalle(${id})' data-mdb-toggle="modal" data-mdb-target="#exampleModal">
-        <div class='content_img'>
-          <img src='${img}' class='img-fluid' alt='${nombre}'/>
+  constructor(id, img, marca, nombre, precio)
+  {
+    this.id = id;
+    this.img = img;
+    this.marca = marca;
+    this.nombre = nombre;
+    this.precio = precio;
+
+    return html += `
+    <div class='items-productos position-relative col-12 col-sm-4 col-md-4 col-xl-3'>
+      <div class='card card-producto overflow-hidden h-100 hover-shadow' onclick='mostrarDetalle(${this.id})' data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+        <div class="row g-0">
+        <div class='content_img col-4 col-sm-12'>
+          <img src='${this.img}' class='img-fluid' alt='${this.nombre}'/>
         </div>
-        <div class='card-body'>
-          <p class='card-text lh-sm mb-3'>${marca}</p>
-          <p class='card-text titulo lh-sm'>${nombre}</p>
+        <div class='card-body col-8 col-sm-12'>
+          <h6 class='card-text lh-sm mb-3 text-uppercase'>${this.marca}</h6>
+          <h6 class='card-text titulo lh-sm'>${this.nombre}</h6s>
           <h5 class='card-text m-0 precio d-flex align-items-center justify-content-between'> 
-          ${precio}           
+          ${this.precio}           
           </h5>
+        </div>
         </div>
       </div>
       <button type="button" class="btn btn-success btn-floating">
@@ -30,7 +41,10 @@ const cuerpo = (id, img, marca, nombre, precio) =>
       </button>  
     </div>      
   `; 
+
+  }
 }
+
 
 const Allproductos = async () =>{
   
@@ -44,11 +58,12 @@ const Allproductos = async () =>{
     //imprimiendo los productos
     data.forEach(element => {
 
-      //formateando precio a moneda local
+      //formateando precio a moneda local y reemplanzado pulgadas por "
       let precio = formatterPeso.format(element.precio);
+      let nombre = element.nombre.replace(" pulgadas", '"');
 
-      //enviando datos al cuerpo html
-      cuerpo(`${element.id}`, `${element.img_1}`, `${element.marca}`, `${element.nombre}`, `${precio}`);
+      //enviando datos al cuerpo html  
+      let bodyHtml = new cuerpo(`${element.id}`, `${element.img_1}`, `${element.marca}`, `${nombre}`, `${precio}`);
 
     });
     document.getElementById("imp_productos").innerHTML = html;
@@ -63,6 +78,9 @@ const categorias = document.querySelectorAll('.item-categoria');
 categorias.forEach(category => {
   category.addEventListener('click', function(){
     
+    //removiendo el menu en mobile
+    closeFiltros()
+
     //limpiando el html
     html = "";
 
@@ -84,15 +102,16 @@ categorias.forEach(category => {
         
         data.forEach(function(element) {
           
-          let categ = element.tipo.indexOf(category.textContent);
+          let categ = element.categoria.indexOf(category.textContent);
 
-          //formateando precio a moneda local
+          //formateando precio a moneda local y reemplanzado pulgadas por "
           let precio = formatterPeso.format(element.precio);
+          let nombre = element.nombre.replace(" pulgadas", '"');
 
-          if (element.tipo == category.textContent)
+          if (element.categoria == category.textContent)
           {          
             //enviando datos al cuerpo html
-            cuerpo(`${element.id}`, `${element.img_1}`, `${element.marca}`, `${element.nombre}`, `${precio}`);
+            let bodyHtml = new cuerpo(`${element.id}`, `${element.img_1}`, `${element.marca}`, `${nombre}`, `${precio}`);
           }
         })
 
@@ -118,15 +137,16 @@ busc.addEventListener('keyup', function(){
       
       data.forEach(function(element) {
         
-        let resul = element.nombre.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").indexOf(busc.value);
+        let resul = element.nombre.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").indexOf(busc.value.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, ""));
 
-        //formateando precio a moneda local
+        //formateando precio a moneda local y reemplanzado pulgadas por "
         let precio = formatterPeso.format(element.precio);
+        let nombre = element.nombre.replace(" pulgadas", '"');
 
         if (resul !== -1)
         {          
           //enviando datos al cuerpo html
-          cuerpo(`${element.id}`, `${element.img_1}`, `${element.marca}`, `${element.nombre}`, `${precio}`);
+          let bodyHtml = new cuerpo(`${element.id}`, `${element.img_1}`, `${element.marca}`, `${nombre}`, `${precio}`);
         }
       })
 
@@ -137,63 +157,63 @@ busc.addEventListener('keyup', function(){
   }
 })
 
-const buscarProductos = () =>
-{
-  input = document.getElementById("buscardor-productos").value;
-
+//mostrando el detalle de los productos
+const mostrarDetalle = (id) =>
+{  
+  if(!isNaN(id))
+  {    
+     fetch('js/productos.json')
+     .then((response) => response.json())
+     .then((data) => {    
+       
+       data.forEach(function(element) {
+         
+         //formateando precio a moneda local
+         let precio = formatterPeso.format(element.precio);
  
-}
+         if (element.id == id)
+         {          
+            //imprimiendo datos en el modal
 
-/*
-class productos
-{
-  constructor(id, tipo, titulo, descripcion, url_img)
-  {
-    this.id = id;
-    this.tipo = tipo;
-    this.titulo = titulo;
-    this.descripcion = descripcion;
-    this.url_img = url_img;
+            let nombre = element.nombre.replace(" pulgadas", '"');
 
-    Allproductos.push({
-      id: this.id, 
-      tipo: this.tipo,
-      titulo: this.titulo,
-      descripcion: this.descripcion,
-      url_img: this.url_img
-    });
+            document.querySelector("#img_1_producto").setAttribute('src', element.img_1);
+            document.querySelector("#img_1_producto").setAttribute('alt', element.nombre);
+            document.querySelector("#img_2_producto").setAttribute('src', element.img_2);
+            document.querySelector("#img_2_producto").setAttribute('alt', element.nombre);
+            document.querySelector("#img_3_producto").setAttribute('src', element.img_3);
+            document.querySelector("#img_3_producto").setAttribute('alt', element.nombre);
+            document.querySelector("#marca_producto").innerHTML = element.marca;
+            document.querySelector("#nombre_producto").innerHTML = nombre;
+            document.querySelector("#categoria_producto").innerHTML = element.categoria;
+            document.querySelector("#ancho_producto").innerHTML = element.ancho;
+            document.querySelector("#largo_producto").innerHTML = element.largo;
+            document.querySelector("#peso_producto").innerHTML = element.peso;
+            document.querySelector("#alto_producto").innerHTML = element.alto;
+            document.querySelector("#precio_producto").innerHTML = precio;
+         }
+       })
+
+   })   
   }
 }
-*/
 
-
-//desordenando aleatoriamente el array
-//Allproductos.sort(function() { return Math.random() - 0.5 });
-
-//mostrando todos los productos
-/*
-const mostrarProductos = () => {
-  let html='';
-  Allproductos.forEach(function(element) {
-  
-    html += `
-      <div class='col-lg-4 col-xxl-3'>
-      <div class='card card-producto h-100 hover-shadow'>
-        <img src='${element.url_img}' class='card-img-top' alt='Fissure in Sandstone'/>
-        <div class='card-body'>
-          <h5 class='card-title'>${element.titulo}</h5>
-          <p class='card-text m-0'>Categoría: ${element.tipo}</p>
-          <p class='card-text m-0'>Descripción: ${element.descripcion}</p>
-        </div>
-      </div>
-    </div>      
-    `;
-  })
-  document.getElementById("imp_productos").innerHTML = html;
-
+//abriendo el menú de filtros
+const openFiltros = () =>
+{
+  $("#content__categorias").addClass("activar");
+  $("#closeFiltros").removeClass("d-none");
+  $("#openFiltros").addClass("d-none");
 }
-mostrarProductos();
-*/
+
+const closeFiltros = () =>
+{
+  $("#content__categorias").removeClass("activar");
+  $("#closeFiltros").addClass("d-none");
+  $("#openFiltros").removeClass("d-none");
+}
+
+
 
 
 

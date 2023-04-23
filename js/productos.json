@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "tipo": "Martillos",
+    "categoria": "Martillos",
     "nombre": "Martillo carpintero fibra de vidrio 16 Oz",
     "marca": "KARSON",
     "precio": 4590,
@@ -15,7 +15,7 @@
   },
   {
     "id": 2,
-    "tipo": "Martillos",
+    "categoria": "Martillos",
     "nombre": "Martillo carpintero 16 Oz acero",
     "marca": "UBERMANN",
     "precio": 20490,
@@ -29,7 +29,7 @@
   },
   {
     "id": 3,
-    "tipo": "Martillos",
+    "categoria": "Martillos",
     "nombre": "Martillo carpintero 20 Oz acero",
     "marca": "REDLINE",
     "precio": 15290,
@@ -43,7 +43,7 @@
   },
   {
     "id": 4,
-    "tipo": "Alicates",
+    "categoria": "Alicates",
     "nombre": "Alicate de punta 6 pulgadas acero",
     "marca": "KARSON",
     "precio": 4090,
@@ -57,7 +57,7 @@
   },
   {
     "id": 5,
-    "tipo": "Alicates",
+    "categoria": "Alicates",
     "nombre": "Alicate de precisión 4 pulgadas acero",
     "marca": "REDLINE",
     "precio": 5790,
@@ -71,7 +71,7 @@
   },
   {
     "id": 6,
-    "tipo": "Alicates",
+    "categoria": "Alicates",
     "nombre": "Alicate de corte 4 1/2 pulgadas acero",
     "marca": "REDLINE",
     "precio": 5790,
@@ -85,7 +85,7 @@
   },
   {
     "id": 7,
-    "tipo": "Palas",
+    "categoria": "Palas",
     "nombre": "Pala punta de huevo acero",
     "marca": "LIOI",
     "precio": 18990,
@@ -99,7 +99,7 @@
   },
   {
     "id": 8,
-    "tipo": "Palas",
+    "categoria": "Palas",
     "nombre": "Pala punta de huevo acero",
     "marca": "BELLOTA",
     "precio": 13490,
@@ -113,7 +113,7 @@
   },
   {
     "id": 9,
-    "tipo": "Palas",
+    "categoria": "Palas",
     "nombre": "Pala carbonera cuadrada acero",
     "marca": "PLASMET",
     "precio": 17290,
@@ -127,7 +127,7 @@
   },
   {
     "id": 10,
-    "tipo": "Brochas",
+    "categoria": "Brochas",
     "nombre": "Brocha multipropósito 5/8 pulgadas x2 1/2 pulgadas",
     "marca": "CONDOR",
     "precio": 4390,
@@ -141,7 +141,7 @@
   },
   {
     "id": 11,
-    "tipo": "Brochas",
+    "categoria": "Brochas",
     "nombre": "Brocha multipropósito 2 pulgadas ",
     "marca": "KOLOR",
     "precio": 3830,
@@ -155,7 +155,7 @@
   },
   {
     "id": 12,
-    "tipo": "Brochas",
+    "categoria": "Brochas",
     "nombre": "Brocha Excelsior profesional 5/8*4",
     "marca": "EXCELSIOR",
     "precio": 5990,
