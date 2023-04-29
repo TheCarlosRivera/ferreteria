@@ -8,8 +8,6 @@
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/mdb.min.css">
-  <link rel="stylesheet" href="css/owl_carousel.css">
-  <link rel="stylesheet" href="css/owl_theme.css">
   <title>Ferretería</title>
 </head>
 <body>
@@ -19,16 +17,18 @@
     <nav class="navbar navbar-light bg-light">
       <div class="container">
         <a class="navbar-brand text-success fw-light" style="font-size: 22px"><strong>Ferretería</strong> </a>
-        <div class="d-md-none">
-          <i class="fas fa-cart-plus ms-3 shopingCard" onclick="openShopingCard();" style="font-size: 16px"></i>
+        <div class="d-md-none shopingCard-num" onclick="openShopingCard('open');">
+          <i class="fas fa-cart-plus ms-3 shopingCard" style="font-size: 16px"></i>
+          <span class="d-flex align-items-center justify-content-center pt-1" id="shop1"></span>
         </div>
-        <form class="d-flex align-items-center input-group mb-2 mb-md-0">
+        <form class="d-flex align-items-center input-group mb-2 mb-md-0" id="formBusq">
           <input type="search" class="form-control rounded" id="buscardor-productos" placeholder="Search" aria-label="Search" aria-describedby="search-addon"/>
           <span class="input-group-text border-0" id="search-addon">
             <i class="fas fa-search"></i>
           </span>
-          <div class="d-none d-md-block">
-            <i class="fas fa-cart-plus ms-3 shopingCard" onclick="openShopingCard();" style="font-size: 16px"></i>
+          <div class="d-none d-md-block shopingCard-num" onclick="openShopingCard('open');">
+            <i class="fas fa-cart-plus ms-3 shopingCard" style="font-size: 16px"></i>
+            <span class="d-flex align-items-center justify-content-center pt-1" id="shop2"></span>
           </div>
         </form>
       </div>
@@ -72,16 +72,8 @@
                   <div class="modal-body p-4 ps-md-5 pe-md-5">
                     <div class="row g-md-5">
                       <div class="col-12 col-lg-6 ps-5 pe-5 ">
-                        <div class="fadeOut owl-carousel owl-theme content_owl carousel_productos" id="carousel_productos">
-                          <div class="carousel_item">
-                            <div><img loading="lazy" src="" alt="" class="img-fluid" id="img_1_producto"></div>
-                          </div>
-                          <div class="carousel_item">
-                            <div><img loading="lazy" src="" alt="" class="img-fluid" id="img_2_producto"></div>
-                          </div>
-                          <div class="carousel_item">
-                            <div><img loading="lazy" src="" alt="" class="img-fluid" id="img_3_producto"></div>
-                          </div>
+                        <div class="img_productos" id="img_productos">
+                          <img loading="lazy" src="" alt="" class="img-fluid" id="img_producto">
                         </div>
                       </div>
                       <div class="col-12 col-lg-6">
@@ -105,9 +97,8 @@
                         </h5>
                         <div class="mt-4 d-flex align-items-center justify-content-between">
                           <h5 class="fs-3 mt-3 text-success" id="precio_producto"></h5>
-                          <button type="button" class="btn btn-success btn-floating">
-                            <i class="fas fa-cart-plus" style="font-size: 16px"></i>
-                          </button>  
+                          <div id="btnAdd"></div>
+
                         </div>
                       </div>
                     </div>
@@ -121,25 +112,40 @@
         <div class="row g-3 g-md-4" id="imp_productos"></div>  
       </div>
 
+      <div class="notify bg-light shadow-3" id="notify">
+        <div class="interno bg-opacity-75">
+          <span class="p-3 text-light d-flex align-items-center justify-content-center">
+          </span>
+        </div>
+      </div>
 
 
   </section>
 
+  <section class="loaders d-none" id="loaders">
+    <div class="spinner-border text-success" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </section>
+
+  <section class="nav-shop vh-100 shadow-3-stromg" id="nav-shop">
+    <div class="nav-shop-interno p-3">
+      <div class="btn-close-shop overflow-hidden p-2" id="closeShop">
+        <button type="button" class="btn btn-danger rounded-circle d-flex align-items-center justify-content-center" onclick="openShopingCard('close');">
+          <i class="fas fa-xmark" style="font-size: 20px;"></i>
+        </button> 
+      </div>  
+      <div class="totalPrice p-3 mb-3 d-sm-flex justify-content-between align-items-center" >
+        <span id="totalProduct"></span>
+        <br>
+        <span id="totalPrice"></span>
+      </div>  
+      <div id="listProductos"></div> 
+    </div>
+  </section>
 
 <script src="js/app.js"></script>
 <script src="js/mdb.min.js"></script>
-<script src="js/owl_carousel.js"></script>
-<script>
-  $(document).ready(function(){    
-    $('.carousel_productos').owlCarousel({
-      items: 1,
-      loop: false,
-      nav: true,
-      autoplay:true
-    });
-  });
-</script>
-
 
 </body>
 </html>

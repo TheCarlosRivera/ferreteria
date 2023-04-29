@@ -9,9 +9,7 @@
     "largo": "33 cm",
     "peso": "16 oz",
     "alto":  "21 cm",
-    "img_1": "img/martillos/martillo-1.jpg",
-    "img_2": "img/martillos/martillo-2.jpg",
-    "img_3": "img/martillos/martillo-3.jpg"
+    "img": "img/martillos/martillo-1.jpg"
   },
   {
     "id": 2,
@@ -23,9 +21,7 @@
     "largo": "32.4 cm",
     "peso": "16 oz",
     "alto":  "18.5 cm",
-    "img_1": "img/martillos/martillo-4.jpg",
-    "img_2": "img/martillos/martillo-5.jpg",
-    "img_3": "img/martillos/martillo-6.jpg"
+    "img": "img/martillos/martillo-4.jpg"
   },
   {
     "id": 3,
@@ -37,9 +33,7 @@
     "largo": "1850 cm",
     "peso":  "20 oz",
     "alto":  "20 cm",
-    "img_1": "img/martillos/martillo-7.jpg",
-    "img_2": "img/martillos/martillo-8.jpg",
-    "img_3": "img/martillos/martillo-9.jpg"
+    "img": "img/martillos/martillo-7.jpg"
   },
   {
     "id": 4,
@@ -51,9 +45,7 @@
     "largo": "16.2 cm",
     "peso":  "200 gr",
     "alto":  "2 cm",
-    "img_1": "img/alicates/alicate-1.jpg",
-    "img_2": "img/alicates/alicate-2.jpg",
-    "img_3": "img/alicates/alicate-3.jpg"
+    "img": "img/alicates/alicate-1.jpg"
   },
   {
     "id": 5,
@@ -65,9 +57,7 @@
     "largo": "9.2 cm",
     "peso":  "230 gr",
     "alto":  "1.2 cm",
-    "img_1": "img/alicates/alicate-4.jpg",
-    "img_2": "img/alicates/alicate-5.jpg",
-    "img_3": "img/alicates/alicate-6.jpg"
+    "img": "img/alicates/alicate-4.jpg"
   },
   {
     "id": 6,
@@ -79,9 +69,7 @@
     "largo": "11.7 cm",
     "peso":  "180 gr",
     "alto":  "1.6 cm",
-    "img_1": "img/alicates/alicate-7.jpg",
-    "img_2": "img/alicates/alicate-8.jpg",
-    "img_3": "img/alicates/alicate-9.jpg"
+    "img": "img/alicates/alicate-7.jpg"
   },
   {
     "id": 7,
@@ -93,9 +81,7 @@
     "largo": "1.1 mt",
     "peso":  "1 kg",
     "alto":  "101 cm",
-    "img_1": "img/palas/pala-1.jpg",
-    "img_2": "img/palas/pala-2.jpg",
-    "img_3": "img/palas/pala-3.jpg"
+    "img": "img/palas/pala-1.jpg"
   },
   {
     "id": 8,
@@ -107,9 +93,7 @@
     "largo": "1 mt",
     "peso":  "1.3 kg",
     "alto":  "108 cm",
-    "img_1": "img/palas/pala-4.jpg",
-    "img_2": "img/palas/pala-5.jpg",
-    "img_3": "img/palas/pala-6.jpg"
+    "img": "img/palas/pala-4.jpg"
   },
   {
     "id": 9,
@@ -121,9 +105,7 @@
     "largo": "1.05 mt",
     "peso":  "1 kg",
     "alto":  "106 cm",
-    "img_1": "img/palas/pala-7.jpg",
-    "img_2": "img/palas/pala-8.jpg",
-    "img_3": "img/palas/pala-9.jpg"
+    "img": "img/palas/pala-7.jpg"
   },
   {
     "id": 10,
@@ -135,9 +117,7 @@
     "largo": "23.5 cm",
     "peso":  "30 gr",
     "alto":  "20 cm",
-    "img_1": "img/brochas/brocha-1.jpg",
-    "img_2": "img/brochas/brocha-2.jpg",
-    "img_3": "img/brochas/brocha-3.jpg"
+    "img": "img/brochas/brocha-1.jpg"
   },
   {
     "id": 11,
@@ -149,9 +129,7 @@
     "largo": "19.99 cm",
     "peso":  "29 gr",
     "alto":  "22 cm",
-    "img_1": "img/brochas/brocha-4.jpg",
-    "img_2": "img/brochas/brocha-5.jpg",
-    "img_3": "img/brochas/brocha-6.jpg"
+    "img": "img/brochas/brocha-4.jpg"
   },
   {
     "id": 12,
@@ -163,9 +141,7 @@
     "largo": "27 cm",
     "peso":  "35 gr",
     "alto":  "25 cm",
-    "img_1": "img/brochas/brocha-7.jpg",
-    "img_2": "img/brochas/brocha-8.jpg",
-    "img_3": "img/brochas/brocha-9.jpg"
+    "img": "img/brochas/brocha-7.jpg"
   }
 
 ]
