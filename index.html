@@ -130,17 +130,21 @@
 
   <section class="nav-shop vh-100 shadow-3-stromg" id="nav-shop">
     <div class="nav-shop-interno p-3">
+      <div class="head d-flex justify-content-between">
       <div class="btn-close-shop overflow-hidden p-2" id="closeShop">
         <button type="button" class="btn btn-danger rounded-circle d-flex align-items-center justify-content-center" onclick="openShopingCard('close');">
           <i class="fas fa-xmark" style="font-size: 20px;"></i>
         </button> 
       </div>  
-      <div class="totalPrice p-3 mb-3 d-sm-flex justify-content-between align-items-center" >
-        <span id="totalProduct"></span>
-        <br>
-        <span id="totalPrice"></span>
+      <div class="totalPrice pb-4 text-end">
+        <div class="">
+          <span class="" id="totalProduct"></span>
+          <br>
+          <span id="totalPrice"></span>
+        </div>
       </div>  
-      <div id="listProductos"></div> 
+    </div>  
+    <div id="listProductos"></div> 
     </div>
   </section>
 
