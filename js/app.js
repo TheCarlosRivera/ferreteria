@@ -68,7 +68,7 @@ const countItems = () => {
 
       shop1.innerHTML = valor_produts;
       shop2.innerHTML = valor_produts;
-      document.querySelector("#totalProduct").innerHTML = 'Productos: '+valor_produts;
+      document.querySelector("#totalProduct").innerHTML = '<i class="fas fa-cart-plus me-2"></i>'+valor_produts;
       valor_produts = 0;
     }
   }, 500);
