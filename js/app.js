@@ -354,14 +354,14 @@ const productosCarrito = () => {
         `${element.cantidad}`
         );  
     }); 
-
-     //imprimiendo el resultado
-     document.getElementById("listProductos").innerHTML = html_carrito;
-     totalFinal = formatterPeso.format(totalCompra);
-     document.querySelector("#totalPrice").innerHTML = 'Total: '+totalFinal;
-     html_carrito = "";
-     totalCompra = 0;
   }
+
+  //imprimiendo el resultado
+  document.getElementById("listProductos").innerHTML = html_carrito;
+  totalFinal = formatterPeso.format(totalCompra);
+  document.querySelector("#totalPrice").innerHTML = 'Total: '+totalFinal;
+  html_carrito = "";
+  totalCompra = 0;
 }
 
 //productosCarrito();
@@ -419,8 +419,8 @@ const addProducto = (id) =>
 
   countItems();
   loaders.classList.add("d-none");
+  Carrito = [];
   addNotify('bg-success', 'fas fa-check me-2', 'Producto agregado');
-
 
 }
 
@@ -470,6 +470,23 @@ const deleteProducto = (id) =>
   countItems();
   addNotify('bg-danger', 'fas fa-xmark me-2', 'Producto eliminado');
 }
+
+//pagar compra
+const pagarCompra = () =>
+{
+  localStorage.removeItem("Carrito");
+  productosCarrito();
+  document.querySelector("#totalProduct").innerHTML = '<i class="fas fa-cart-plus me-2"></i>'+0;
+  document.body.style.overflowY = '';
+  document.querySelector("#nav-shop").classList.remove("active");
+  document.querySelector("#nav-shop").classList.remove("bg");
+  shop1.innerHTML = "";
+  shop2.innerHTML = "";
+  shop1.classList.remove("active");
+  shop2.classList.remove("active"); 
+  addNotify('bg-success', 'fas fa-check me-2', 'Compra realizada!');
+}
+
 
 //abriendo el carrito
 const openShopingCard = (e) =>
