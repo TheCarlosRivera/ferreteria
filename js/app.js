@@ -22,9 +22,9 @@ let totalFinal = 0;
 //api
 const ApiProductos = async () =>
 {
-  loaders.classList.remove("d-none");
   try 
   {
+    loaders.classList.remove("d-none");
     const response = await fetch('js/productos.json');
     const data = await response.json();
     return data;
@@ -32,6 +32,10 @@ const ApiProductos = async () =>
   catch (error)
   {
     console.error(error)
+  }
+  finally
+  {
+
   }
 }
 
@@ -51,8 +55,8 @@ const countItems = () => {
     if(exist)
     {
       for(let total in exist)
-      {
-        valor_produts += exist[total]['cantidad'];
+      {  
+        valor_produts += parseInt(exist[total]['cantidad']);
       }
 
       if(valor_produts == 0)
@@ -71,7 +75,9 @@ const countItems = () => {
       document.querySelector("#totalProduct").innerHTML = '<i class="fas fa-cart-plus me-2"></i>'+valor_produts;
       valor_produts = 0;
     }
+
   }, 500);
+  
 }
 countItems();
 
@@ -108,23 +114,31 @@ class cuerpo
 
     return html += `
     <div class='items-productos position-relative col-12 col-sm-6 col-xl-4 col-xxl-3'>
-      <div class='card card-producto overflow-hidden h-100 hover-shadow' onclick='mostrarDetalle(${this.id})' data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+      <div class='card card-producto overflow-hidden h-100 hover-shadow'>
         <div class="row g-0">
-        <div class='content_img col-4 col-sm-12'>
+        <div class='content_img col-4 col-sm-12' onclick='mostrarDetalle(${this.id})' data-mdb-toggle="modal" data-mdb-target="#exampleModal">
           <img src='${this.img}' class='img-fluid' alt='${this.nombre}'/>
         </div>
-        <div class='card-body col-8 col-sm-12'>
+        <div class='card-body col-8 col-sm-12 p-3 p-sm-4'>
           <p class='card-text lh-sm mb-3 text-uppercase'>${this.marca}</p>
           <h5 class='card-text titulo lh-sm'>${this.nombre}</h5>
-          <h5 class='card-text m-0 precio d-flex align-items-center justify-content-between'> 
-          ${this.precio}           
-          </h5>
+          <h5 class='card-text m-0 mb-3 precio'>${this.precio}</h5>
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="num_cantidad d-flex align-items-center">
+                <button type="button" class="less me-1 text-center" data-id="${this.id}"> - </button>
+                  <input type="tel" class="form-control input_cantidad" value="1" data-id="${this.id}">
+                <button type="button" class="more ms-1 text-center" data-id="${this.id}"> + </button>
+              </div>
+              <div>
+                <button type="button" class="btn-compra btn btn-success btn-floating" onclick="addProducto(${this.id})">
+                  <i class="fas fa-cart-plus" style="font-size: 16px"></i>
+                </button> 
+              </div>
+            </div>
         </div>
         </div>
       </div>
-      <button type="button" class="btn btn-success btn-floating" onclick="addProducto(${this.id})">
-        <i class="fas fa-cart-plus" style="font-size: 16px"></i>
-      </button>  
+ 
     </div>      
   `; 
 
@@ -193,6 +207,7 @@ const Allproductos = (productos) =>{
     document.getElementById("imp_productos").innerHTML = html;
   }, 500);
 
+  cant();
 };
 
 ApiProductos().then(productos =>  Allproductos(productos));
@@ -234,7 +249,7 @@ categorias.forEach(category => {
           if (element.categoria == category.textContent)
           {          
             //enviando datos al cuerpo html
-            let bodyHtml = new cuerpo(`${element.id}`, `${element.img}`, `${element.marca}`, `${nombre}`, `${precio}`);
+            new cuerpo(`${element.id}`, `${element.img}`, `${element.marca}`, `${nombre}`, `${precio}`);
           }
         })
 
@@ -247,6 +262,8 @@ categorias.forEach(category => {
         }, 500);
 
       });
+
+      cant();
     }
   })
 });
@@ -260,6 +277,9 @@ document.querySelector("#formBusq").addEventListener("submit", function(e){
 });
 
 busc.addEventListener('keyup', function(){
+  
+  categorias.forEach(e => { e.classList.remove("active"); });
+  $("#todos").addClass("active");
 
   if(busc.value !== null)
   {
@@ -291,6 +311,8 @@ busc.addEventListener('keyup', function(){
     });
 
   }
+
+  cant();
 })
 
 
@@ -370,6 +392,18 @@ const productosCarrito = () => {
 //agregando producto al carrito
 const addProducto = (id) =>
 {
+  let countProduct;
+  let inputCant = document.querySelectorAll(".input_cantidad");
+  inputCant.forEach(element => {
+
+    element.getAttribute("data-id");
+    if(element.getAttribute("data-id") == id)
+    {
+      countProduct = element.value;
+    }
+
+  });
+
   ApiProductos().then(productos =>{
     let existentes = JSON.parse(localStorage.getItem("Carrito"));
     let product_new = productos.find(e => e.id === id);
@@ -379,7 +413,7 @@ const addProducto = (id) =>
       let product_exis = existentes.find(e => e.id === id);
       if(product_exis && product_exis.id == id)
       {
-        let cantidad = product_exis.cantidad + 1;            
+        let cantidad = product_exis.cantidad + countProduct;            
         product_exis.cantidad = cantidad;
       }
       else 
@@ -392,7 +426,7 @@ const addProducto = (id) =>
             'marca': product_new.marca, 
             'nombre': product_new.nombre,
             'precio': product_new.precio,
-            'cantidad': 1
+            'cantidad': countProduct
           }
         );               
       }
@@ -410,7 +444,7 @@ const addProducto = (id) =>
           'marca': product_new.marca, 
           'nombre': product_new.nombre,
           'precio': product_new.precio,
-          'cantidad': 1
+          'cantidad': countProduct
         }
       );
       localStorage.setItem("Carrito", JSON.stringify(Carrito));
@@ -531,3 +565,44 @@ const closeFiltros = () =>
   $("#closeFiltros").addClass("d-none");
   $("#openFiltros").removeClass("d-none");
 }
+
+
+//agregando cantidad
+
+const cant = () =>{
+  setTimeout(() => {
+
+    let inputCantidad = document.querySelectorAll(".input_cantidad");
+    let less = document.querySelectorAll(".less");
+    let more = document.querySelectorAll(".more");
+    let total;
+    let campo;
+    //restando cantidad de productos
+    less.forEach(element => {
+      element.addEventListener("click", () => {
+        campo = element.nextElementSibling;
+        total = parseInt(campo.value) - 1;
+        if(total <= 1)
+        {
+          campo.setAttribute("value", 1);
+        }
+        else{
+          campo.setAttribute("value", total);
+        }      
+      })
+    });
+
+    //sumando cantidad de productos
+    more.forEach(element => {
+      element.addEventListener("click", () => {
+        campo = element.previousElementSibling;
+        total = parseInt(campo.value) + 1;
+        campo.setAttribute("value", total);
+      })
+
+  });}, 1000);
+}
+cant();
+
+
+
