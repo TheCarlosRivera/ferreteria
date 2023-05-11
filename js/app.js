@@ -413,12 +413,13 @@ const addProducto = (id) =>
       let product_exis = existentes.find(e => e.id === id);
       if(product_exis && product_exis.id == id)
       {
-        let cantidad = product_exis.cantidad + countProduct;            
+        let cantidad = parseInt(product_exis.cantidad) + parseInt(countProduct);            
         product_exis.cantidad = cantidad;
       }
       else 
       {
         //agregando producto al array
+        
         existentes.push(
           {
             'id': product_new.id, 
@@ -428,7 +429,8 @@ const addProducto = (id) =>
             'precio': product_new.precio,
             'cantidad': countProduct
           }
-        );               
+        );  
+                     
       }
 
       //almacenando productos al storage
@@ -437,6 +439,7 @@ const addProducto = (id) =>
     }
     else
     {
+      
       Carrito.push(
         {
           'id': product_new.id, 
@@ -448,6 +451,7 @@ const addProducto = (id) =>
         }
       );
       localStorage.setItem("Carrito", JSON.stringify(Carrito));
+      
     }
   });
 
