@@ -571,8 +571,6 @@ const closeFiltros = () =>
 
 const cant = () =>{
   setTimeout(() => {
-
-    let inputCantidad = document.querySelectorAll(".input_cantidad");
     let less = document.querySelectorAll(".less");
     let more = document.querySelectorAll(".more");
     let total;
@@ -602,7 +600,6 @@ const cant = () =>{
 
   });}, 1000);
 }
-cant();
 
 
 
