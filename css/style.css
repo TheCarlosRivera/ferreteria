@@ -223,6 +223,13 @@ body
   min-height: 60px;
 }
 
+.content__productos .card-producto .titulo .info
+{
+  font-size: 16px;
+  color: #DC4C64;
+  cursor: pointer;
+}
+
 .num_cantidad
 {
   width: 120px;

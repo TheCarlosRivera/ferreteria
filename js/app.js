@@ -116,12 +116,17 @@ class cuerpo
     <div class='items-productos position-relative col-12 col-sm-6 col-xl-4 col-xxl-3'>
       <div class='card card-producto overflow-hidden h-100 hover-shadow'>
         <div class="row g-0">
-        <div class='content_img col-4 col-sm-12' onclick='mostrarDetalle(${this.id})' data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+        <div class='content_img col-4 col-sm-12'>
           <img src='${this.img}' class='img-fluid' alt='${this.nombre}'/>
         </div>
         <div class='card-body col-8 col-sm-12 p-3 p-sm-4'>
           <p class='card-text lh-sm mb-3 text-uppercase'>${this.marca}</p>
-          <h5 class='card-text titulo lh-sm'>${this.nombre}</h5>
+          <h5 class='card-text titulo lh-sm'>
+            ${this.nombre}
+            <span class='m-0 pt-3 pb-3 d-block info' onclick='mostrarDetalle(${this.id})' data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+              Más información
+            </span>
+          </h5>
           <h5 class='card-text m-0 mb-3 precio'>${this.precio}</h5>
             <div class="d-flex align-items-center justify-content-between">
               <div class="num_cantidad d-flex align-items-center">
@@ -340,12 +345,9 @@ const mostrarDetalle = (id) =>
       document.querySelector("#peso_producto").innerHTML = registro.peso;
       document.querySelector("#alto_producto").innerHTML = registro.alto;
       document.querySelector("#precio_producto").innerHTML = precio;
-      document.querySelector("#btnAdd").innerHTML = `
-      <button type="button" class="btn btn-success btn-floating" onclick="addProducto(${registro.id})">
-      <i class="fas fa-cart-plus" style="font-size: 16px"></i>
-      </button>
-      `
+
       loaders.classList.add("d-none");
+
     });  
   }
 }
@@ -577,8 +579,10 @@ const cant = () =>{
   setTimeout(() => {
     let less = document.querySelectorAll(".less");
     let more = document.querySelectorAll(".more");
+
     let total;
     let campo;
+
     //restando cantidad de productos
     less.forEach(element => {
       element.addEventListener("click", () => {
